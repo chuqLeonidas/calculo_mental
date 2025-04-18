@@ -1,0 +1,68 @@
+body {
+    text-align: center;
+    font-family: Arial, sans-serif;
+    background-color: #e2e2e2;
+    padding: 20px;
+    
+}
+
+button {
+
+    margin-top: 20px;
+    padding: 13px 25px;
+    font-size: 20px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.result button {
+    margin-top: 15px;
+    padding: 13px 22px;
+    font-size: 20px;
+    border: none;
+    background-color: rgb(48, 73, 202);
+    color: white;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+.result button:hover {
+    background-color: rgb(18, 29, 85);
+}
+
+
+h1{
+    color: rgb(15, 11, 11);
+}
+
+h2{
+    font-size: 32px;
+}
+
+.number-display{
+    font-size: 180px;
+    color: #007bff;
+    transition: opacity 0.5s, transform 0.5s; /* Animación de transición */
+}
+
+.config {
+    text-align: right;
+}
+
+.config button {
+    padding: 5px 5px;
+    background-color: rgb(162, 153, 153);
+}
+
+.return {
+    text-align: left;
+}
