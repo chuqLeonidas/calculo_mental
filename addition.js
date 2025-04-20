@@ -1,7 +1,10 @@
-var waitTime = 10000;
+//var waitTime = 10000;
 var interval = 5000;
+
 var min = 7;
-var max = 100;
+
+var maxim = 100;
+
 var running = false;
 var myInterval;
 
@@ -16,12 +19,11 @@ function generateNumbers(){
     let numbers = [];
     for (let i = 0; i < 6; i++){
         if(Math.random() < 0.5) {
-            numbers.push(Math.floor(Math.random() * (max - min)) + min)
+            numbers.push(Math.floor(Math.random() * (maxim - min)) + min)
         } else {
-            numbers.push(Math.floor(Math.random() * (min - max)) - min)
+            numbers.push(Math.floor(Math.random() * (min - maxim)) - min)
         }
     }
-    console.log(numbers);
     return numbers;
 }
 
@@ -34,15 +36,13 @@ function start() {
 
     startBttn.disabled = true;
     restartBttn.disabled = false;
-
+    resultsBttn.disabled = true;
 
     let numbers = generateNumbers();
     running = true;
     result = 0;
 
     let i = 0;
-
-    console.log("Empezo");
 
     myInterval = setInterval(() => {
 
@@ -73,8 +73,6 @@ function start() {
         } else {
 
             clearInterval(myInterval);
-            
-            console.log("Resultado final " + result);
 
             resultsBttn.disabled = false;
             
@@ -84,9 +82,6 @@ function start() {
 
     //document.getElementById("numberDisplay").textContent = display;
 
-
-    console.log("Termino");
-    console.log(running);
 }
 
 function restart() {
@@ -98,11 +93,13 @@ function restart() {
     let display = document.getElementById("numberDisplay");
     let startBttn = document.getElementById("start");
     let restartBttn = document.getElementById("restart");
+    
     display.textContent = "🎲";
+    display.style.color = "#007bff";  // Volver al color normal
     
     startBttn.disabled = false;
     restartBttn.disabled = true;
-    console.log(running);
+    resultsBttn.disabled = true;
 }
 
 function showResults(){
@@ -112,10 +109,35 @@ function showResults(){
     display.style.transform = 'scale(0.5)';
 
     setTimeout(() => {
-        console.log("boton: " + result);
         display.textContent = result; // Mostrar el número actual
+        display.style.color = "#003267";  // Cambiar color del resultado
         display.style.opacity = 1; // Restaurar opacidad
         display.style.transform = 'scale(1)'; // Restaurar tamaño
         
     }, 500); // Retardar para que la animación ocurra primero
 }
+
+/* CONFIGURACION */
+const toggleBtn = document.getElementById("toggleBtn");
+const toggleIcon = document.getElementById("toggleIcon");
+const configCollapse = document.getElementById("configCollapse");
+const configCard = document.getElementById("configCard");
+
+configCollapse.addEventListener('show.bs.collapse', () => {
+    toggleIcon.textContent = 'v';
+    const btnWidth = toggleBtn.offsetWidth;
+    configCard.style.width = (btnWidth * 2) + 'px';
+});
+configCollapse.addEventListener('hide.bs.collapse', () => {
+    toggleIcon.textContent = '>';
+    configCard.style.width = null;
+});
+
+document.getElementById('saveBtn').addEventListener('click', () => {
+
+    if(document.getElementById('intervalo').value !== "")
+        interval = document.getElementById('intervalo').value * 1000;
+    if(document.getElementById('limite').value !== "")
+        maxim = document.getElementById('limite').value;
+
+});

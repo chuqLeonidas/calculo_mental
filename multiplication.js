@@ -1,7 +1,7 @@
 const primeNumbers = [2, 3, 5, 7, 13]
 
 var interval = 7000;
-var max = 70;
+var maxim = 70;
 var running = false;
 var myInterval;
 
@@ -24,25 +24,23 @@ function start() {
 
     running = true;
 
-    startBttn.disabled = true;
-    restartBttn.disabled = false;
-
+    startBttn.disabled = true; // desactivar boton de inicio
+    restartBttn.disabled = false; // Activar boton de reinicio
+    resultsBttn.disabled = true;  // desactivar boton resultados
+    /*
     console.log("------TESTEO------")
     for(let j = 0; j < 5; j++){ // TESTEO DE NUMEROS RANDOM
         generateValues();
         console.log(getNumbers(values))
     }
     console.log("------TESTEO------")
+    */
 
-    generateValues();
+    generateValues();  // Generar valores
 
-    numbers = getNumbers(values);
-
-    console.log(numbers);
+    numbers = getNumbers(values); // Guardar numeros
 
     let i = 0;
-
-    console.log("Empezo");
 
     myInterval = setInterval(() => {
 
@@ -71,17 +69,13 @@ function start() {
             
             clearInterval(myInterval);
             
-            console.log("Resultado final " + getNumber(finalResult));
-            
-            resultsBttn.disabled = false;
+            resultsBttn.disabled = false;  // Activar boton
         }
 
     }, interval);
 
     //document.getElementById("numberDisplay").textContent = display;
 
-
-    console.log("Termino");
 }
 
 function restart() {
@@ -93,10 +87,13 @@ function restart() {
     let display = document.getElementById("numberDisplay");
     let startBttn = document.getElementById("start");
     let restartBttn = document.getElementById("restart");
+    
     display.textContent = "🎲";
+    display.style.color = "#007bff";  // Volver al color normal
     
     startBttn.disabled = false;
     restartBttn.disabled = true;
+    resultsBttn.disabled = true;
 }
 
 function showResults(){
@@ -106,9 +103,11 @@ function showResults(){
     display.style.transform = 'scale(0.5)';
 
     setTimeout(() => {
-        console.log("boton: " + result);
         display.textContent = result; // Mostrar el número actual
-        display.style.opacity = 1; // Restaurar opacidad
+
+        display.style.color = "#003267";  // Cambiar color del resultado
+        
+        display.style.opacity = 1; // Restaurar opacidads
         display.style.transform = 'scale(1)'; // Restaurar tamaño
         
     }, 500); // Retardar para que la animación ocurra primero
@@ -150,7 +149,7 @@ function generateValue() {
       map.set(nr, randomExponent(nr));
     });
     value = getNumber(map);
-    } while (value === 1 || value > max || value < 7); // Establecer limite de 70
+    } while (value === 1 || value > maxim || value < 7); // Establecer limite de 70
    
     return map;
 }
@@ -220,6 +219,8 @@ function randomExponent(base){
       return random(5); // Maximo 3^4
       case 5:
       return random(3); // Maximo 5^2
+      case 7:
+        return random (3);
       
       default: return random(2);
     }
@@ -253,3 +254,25 @@ function multiply(factor1, factor2){
     return result;
   
 }
+/* CONFIGURACION */
+const toggleBtn = document.getElementById("toggleBtn");
+const toggleIcon = document.getElementById("toggleIcon");
+const configCollapse = document.getElementById("configCollapse");
+const configCard = document.getElementById("configCard");
+
+configCollapse.addEventListener('show.bs.collapse', () => {
+    toggleIcon.textContent = 'v';
+    const btnWidth = toggleBtn.offsetWidth;
+    configCard.style.width = (btnWidth * 2) + 'px';
+});
+configCollapse.addEventListener('hide.bs.collapse', () => {
+    toggleIcon.textContent = '>';
+    configCard.style.width = null;
+});
+
+document.getElementById('saveBtn').addEventListener('click', () => {
+    if(document.getElementById('intervalo').value !== "")
+        interval = document.getElementById('intervalo').value * 1000;
+    if(document.getElementById('limite').value !== "")
+        maxim = document.getElementById('limite').value;
+});

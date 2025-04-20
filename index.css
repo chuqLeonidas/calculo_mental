@@ -2,14 +2,14 @@ body {
     text-align: center;
     font-family: Arial, sans-serif;
     background-color: #e2e2e2;
-    padding: 20px;
+    padding: 15px;
     
 }
 
 button {
 
-    margin-top: 20px;
-    padding: 13px 25px;
+    margin-top: 15px;
+    padding: 10px 25px;
     font-size: 20px;
     border: none;
     background-color: #007bff;
@@ -25,7 +25,7 @@ button:hover {
 
 .result button {
     margin-top: 15px;
-    padding: 13px 22px;
+    padding: 10px 22px;
     font-size: 20px;
     border: none;
     background-color: rgb(48, 73, 202);
@@ -39,13 +39,28 @@ button:hover {
     background-color: rgb(18, 29, 85);
 }
 
+.settings-btn {
+    width: 60px;              /* ajusta al tamaño de tu imagen */
+    height: 40px;
+    background: url('config_button.png') no-repeat center;
+    background-size: contain;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+.settings-btn:hover {
+    background-color: #e2e2e2;
+
+}
 
 h1{
     color: rgb(15, 11, 11);
+    font-weight: bold;
 }
 
 h2{
     font-size: 32px;
+    font-weight: bold;
 }
 
 .number-display{
@@ -58,11 +73,32 @@ h2{
     text-align: right;
 }
 
-.config button {
-    padding: 5px 5px;
-    background-color: rgb(162, 153, 153);
+.return {
+    text-align: left;
 }
 
-.return {
+.return button {
+    margin-top: 10px;
+    padding: 8px 20px;
+    font-size: 20px;
+    border: none;
+    background-color: #9c9c9c;
+    color: white;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+input[type=number] {
+    appearance: textfield;
+    -moz-appearance: textfield;
+}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.configuracion {
     text-align: left;
 }
